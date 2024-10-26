@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentTime >= lineTime && currentTime < nextLineTime) {
             lyricsLines[i].classList.add('active');
             // Прокрутка в центр
-            lyricsLines[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            lyricsLines[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } else {
             lyricsLines[i].classList.remove('active');
         }
