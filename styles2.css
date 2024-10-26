@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(https://i.pinimg.com/originals/02/cc/24/02cc241776de70b6a3175659cfc424f9.jpg);
+    background-size: cover; /* Это позволяет изображению покрывать весь элемент */
+    background-position: center;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    width: 80%;
+    max-width: 600px;
+    align-items: center;
+    align-self: center;
+  }
+  
+  .lyrics-container {
+    max-height: 300px;
+    overflow-y: hidden;
+    align-self: center;
+    border: 4px solid #2b023e; /* Рамка */
+    background-color: rgba(230, 166, 238, 0.8); /* Цвет фона */
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 15px;
+  }
+  
+  p {
+    font-size: 20px;
+    margin: 10px 0;
+    margin-top: 1500px;
+    opacity: 0.6;
+    transition: color 1s ease, font-size 1s ease;
+  }
+  
+  p.active {
+    color: rgb(255, 255, 255); /* Цвет подсвеченной строки */
+    font-size: 24px; /* Немного увеличиваем размер */
+    opacity: 1;
+  }
+
+       /* Стили для уведомления */
+       #fullscreen-notification {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9); /* Полупрозрачный фон */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        z-index: 1000;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #fullscreen-notification.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
