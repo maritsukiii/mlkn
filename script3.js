@@ -1,9 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const audioPlayer = document.getElementById('audioPlayer');
-    const lyricsContainer = document.getElementById('lyricsContainer');
-    const lyricsLines = lyricsContainer.getElementsByTagName('p');
-  
-    function updateLyrics() {
+const lyricsLines = document.querySelectorAll('.lyrics-container p');
+let lastActiveIndex = -1; // Индекс последней активной строки
+
+function updateLyrics() {
     const currentTime = audioPlayer.currentTime;
 
     for (let i = 0; i < lyricsLines.length; i++) {
@@ -11,17 +9,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextLineTime = lyricsLines[i + 1] ? parseFloat(lyricsLines[i + 1].getAttribute('data-time')) : Infinity;
 
         if (currentTime >= lineTime && currentTime < nextLineTime) {
-            lyricsLines[i].classList.add('active');
-            // Прокрутка в центр
-            lyricsLines[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (lastActiveIndex !== i) { // Проверка на изменение строки
+                lyricsLines[i].classList.add('active');
+                lyricsLines[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                lastActiveIndex = i; // Сохранение индекса активной строки
+            }
         } else {
             lyricsLines[i].classList.remove('active');
         }
     }
+
+    // Если дошли до конца, прекращаем прокрутку
+    if (currentTime >= parseFloat(lyricsLines[lyricsLines.length - 1].getAttribute('data-time'))) {
+        audioPlayer.pause(); // Остановить аудио
+        // Можно добавить код для выполнения действия, если хотите, например, показать сообщение
+    }
 }
-  
-    audioPlayer.addEventListener('timeupdate', updateLyrics);
-  });
 
    // Получаем элемент уведомления
    const notification = document.getElementById('fullscreen-notification');
