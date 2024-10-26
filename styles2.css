@@ -20,7 +20,7 @@ body {
   
   .lyrics-container {
     max-height: 300px;
-    overflow-y: auto;
+    overflow-y: hidden;
     align-self: center;
     border: 4px solid #2b023e; /* Рамка */
     background-color: rgba(230, 166, 238, 0.8); /* Цвет фона */
