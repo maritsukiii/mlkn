@@ -4,20 +4,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const lyricsLines = lyricsContainer.getElementsByTagName('p');
   
     function updateLyrics() {
-      const currentTime = audioPlayer.currentTime;
-  
-      for (let i = 0; i < lyricsLines.length; i++) {
+    const currentTime = audioPlayer.currentTime;
+
+    for (let i = 0; i < lyricsLines.length; i++) {
         const lineTime = parseFloat(lyricsLines[i].getAttribute('data-time'));
         const nextLineTime = lyricsLines[i + 1] ? parseFloat(lyricsLines[i + 1].getAttribute('data-time')) : Infinity;
-  
+
         if (currentTime >= lineTime && currentTime < nextLineTime) {
-          lyricsLines[i].classList.add('active');
-          lyricsLines[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            lyricsLines[i].classList.add('active');
+            // Прокрутка в центр
+            lyricsLines[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-          lyricsLines[i].classList.remove('active');
+            lyricsLines[i].classList.remove('active');
         }
-      }
     }
+}
   
     audioPlayer.addEventListener('timeupdate', updateLyrics);
   });
